@@ -18,4 +18,12 @@ while True:
 import subprocess
 concat_files = [f'contents_{i}.ts'for i in range(1,contents_length+1)]
 concat_str = '|'.join(concat_files)
-subprocess.getoutput(f'ffmpeg -i "concat:{concat_str}" -c copy output.ts')
+output_str = 'output'
+subprocess.getoutput(f'ffmpeg -i "concat:{concat_str}" -c copy {output_str}.ts')
+
+#%%
+# output ts to mp4
+subprocess.getoutput(f'ffmpeg -i {output_str}.ts -acodec copy -vcodec copy {output_str}.mp4')
+
+
+# %%
